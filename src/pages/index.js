@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
-import Link from 'next/link'
+import router from 'next/router';
+
+import { useAuth } from '../contexts/AuthContext'
 
 import { Button } from '../components/Button'
 
 import { BodyContainer, HomeContainer } from './index.styles';
 
-import { Navbar } from '../components/Navbar'
-
 function Home() {
   const [count, setCount] = useState(0);
+
+  const auth = useAuth();
 
   function increment() {
     setCount(count + 1);
@@ -21,25 +23,42 @@ function Home() {
     [count]
   )
 
+  useEffect(
+    () => {
+      if (!auth.user) {
+        router.push('/login');
+      }
+    },
+    [auth.user]
+  );
+  if (!auth.user) return null
+
   return (
     <BodyContainer>
-      <Navbar class='navbar'>
-        <h2 style={{ paddingRight: '90%', color: 'white' }}>Home</h2>
-        <Link href="/login" passHref>
-          <Button type="button" style={{ marginTop: '1rem', width: '100px' }}>
-            Sign out
-          </Button>
-        </Link>
-      </Navbar>
       <HomeContainer>
-        <h1>Hello Products Next</h1>
+        <h1>Seja Bem-Vindo, {auth.user.username}</h1>
+
+        <ul>
+          <li>
+            <h3>Produto 1</h3> {/*Nome*/}
+            <span>O produto e top</span> {/*Descrição*/}
+            <span>R$40,00</span> {/*Preço*/}
+          </li>
+        </ul>
 
         <span>Counter: {count}</span>
 
         <Button type="button" onClick={increment}>
-          Click Me
+          Click Me!
         </Button>
 
+        <Button
+          type="button"
+          onClick={() => auth.setUser(auth.user === 'Greg' ? 'Bryan' : 'Greg')}
+          style={{ marginTop: '1rem' }}
+        >
+          Trocar Usuário
+        </Button>
       </HomeContainer>
     </BodyContainer>
   )
