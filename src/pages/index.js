@@ -40,10 +40,40 @@ function Home() {
 
         <ul>
           <li>
-            <h3>Produto 1</h3> {/*Nome*/}
-            <span>O produto e top</span> {/*Descrição*/}
-            <span>R$40,00</span> {/*Preço*/}
+            <h3>Monster Energy</h3> {/*Nome*/}
+            <span>Surpreenda-se com a lata do energético mais animal do planeta.</span> {/*Descrição*/}
+            <br />
+            <span>Por apenas R$ 6,99</span> {/*Preço*/}
           </li>
+          <br />
+          <li>
+            <h3>Redbull</h3> {/*Nome*/}
+            <span>Se surpreenda com o energético mais energético do planeta. Redbull te da asas.</span> {/*Descrição*/}
+            <br />
+            <span>Por apenas R$ 7,09</span> {/*Preço*/}
+          </li>
+          <br />
+          <li>
+            <h3>Sprite</h3> {/*Nome*/}
+            <span>O refrigerante que mata a sua sede com o melhor do sabor do limão.</span> {/*Descrição*/}
+            <br />
+            <span>Por apenas R$ 4,49</span> {/*Preço*/}
+          </li>
+          <br />
+          <li>
+            <h3>Skittles</h3> {/*Nome*/}
+            <span>Há um mundo de sabores totalmente novo para você experimentar! Divirta-se!</span> {/*Descrição*/}
+            <br />
+            <span>Por apenas R$ 1,49</span> {/*Preço*/}
+          </li>
+          <br />
+          <li>
+            <h3>Refrigerante Água da Serra Framboesa</h3> {/*Nome*/}
+            <span>Delicie-se com o refrescante sabor de framboesa.</span> {/*Descrição*/}
+            <br />
+            <span>Por apenas R$ 3,99</span> {/*Preço*/}
+          </li>
+          <br />
         </ul>
 
         <span>Counter: {count}</span>
