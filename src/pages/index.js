@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import router from 'next/router';
 
 import { useAuth } from '../contexts/AuthContext'
+import { fakeApi } from '../services/fakeApi';
 
 import { Button } from '../components/Button'
 
-import { BodyContainer, HomeContainer } from './index.styles';
+import { BodyContainer, HomeContainer, ProductsList } from './index.styles';
 
-function Home() {
+export default function Home({ products }) {
   const [count, setCount] = useState(0);
 
   const auth = useAuth();
@@ -31,6 +32,7 @@ function Home() {
     },
     [auth.user]
   );
+
   if (!auth.user) return null
 
   return (
@@ -38,60 +40,34 @@ function Home() {
       <HomeContainer>
         <h1>Seja Bem-Vindo, {auth.user.username}</h1>
 
-        <ul>
-          <li>
-            <h3>Monster Energy</h3> {/*Nome*/}
-            <span>Surpreenda-se com a lata do energético mais animal do planeta.</span> {/*Descrição*/}
-            <br />
-            <span>Por apenas R$ 6,99</span> {/*Preço*/}
-          </li>
-          <br />
-          <li>
-            <h3>Redbull</h3> {/*Nome*/}
-            <span>Se surpreenda com o energético mais energético do planeta. Redbull te da asas.</span> {/*Descrição*/}
-            <br />
-            <span>Por apenas R$ 7,09</span> {/*Preço*/}
-          </li>
-          <br />
-          <li>
-            <h3>Sprite</h3> {/*Nome*/}
-            <span>O refrigerante que mata a sua sede com o melhor do sabor do limão.</span> {/*Descrição*/}
-            <br />
-            <span>Por apenas R$ 4,49</span> {/*Preço*/}
-          </li>
-          <br />
-          <li>
-            <h3>Skittles</h3> {/*Nome*/}
-            <span>Há um mundo de sabores totalmente novo para você experimentar! Divirta-se!</span> {/*Descrição*/}
-            <br />
-            <span>Por apenas R$ 1,49</span> {/*Preço*/}
-          </li>
-          <br />
-          <li>
-            <h3>Refrigerante Água da Serra Framboesa</h3> {/*Nome*/}
-            <span>Delicie-se com o refrescante sabor de framboesa.</span> {/*Descrição*/}
-            <br />
-            <span>Por apenas R$ 3,99</span> {/*Preço*/}
-          </li>
-          <br />
-        </ul>
+        <ProductsList>
+          {
+            products.map(product => {
+              return (
+                <li key={product.id} onClick={() => router.push(`/products/${product.id}`)}>
+                  <h3>{product.name}</h3> {/*Nome*/}
+                  <span className="description">{product.description}</span> {/*Descrição*/}
+                  <span className="price">Por apenas R$ {product.price}</span> {/*Preço*/}
+                </li>
+              )
+            })
+          }
+        </ProductsList>
 
         <span>Counter: {count}</span>
 
         <Button type="button" onClick={increment}>
           Click Me!
         </Button>
-
-        <Button
-          type="button"
-          onClick={() => auth.setUser(auth.user === 'Greg' ? 'Bryan' : 'Greg')}
-          style={{ marginTop: '1rem' }}
-        >
-          Trocar Usuário
-        </Button>
       </HomeContainer>
     </BodyContainer>
   )
 }
 
-export default Home;
+export const getServerSideProps = async () => {
+  const products = await fakeApi.getAllProducts();
+
+  return {
+    props: { products }
+  }
+}

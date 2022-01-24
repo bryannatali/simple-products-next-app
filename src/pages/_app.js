@@ -1,20 +1,17 @@
-import { Navbar } from '../components/Navbar';
+import { Layout } from '../components/Layout';
 
 import { AuthProvider } from '../contexts/AuthContext';
 
-import { AppContainer } from "../styles/app.styles"
 import GlobalStyle from "../styles/global"
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <AppContainer>
-        <Navbar pageTitle="Home" />
-
+      <Layout>
         <Component {...pageProps} />
 
         <GlobalStyle />
-      </AppContainer>
+      </Layout>
     </AuthProvider>
   )
 }
