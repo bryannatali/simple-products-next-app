@@ -1,5 +1,5 @@
-import Router from "next/router"
-import { useState } from "react"
+import router from "next/router"
+import { useState, useEffect } from "react"
 
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
@@ -12,6 +12,15 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   const auth = useAuth();
+
+  useEffect(
+    () => {
+      if(auth.user) {
+        router.push('./')
+      }
+    },
+    [auth.user]
+  )
 
   function handleSignIn() {
     if (!username || !password) {
