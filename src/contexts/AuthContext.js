@@ -11,7 +11,9 @@ export function AuthProvider({ children }) {
   function signIn(userSignInData) {
     setUser(userSignInData);
 
-    localStorage.setItem(localStorageUserKey, JSON.stringify(userSignInData));
+    const stringifiedUser = JSON.stringify(userSignInData) // Javascript to JSON
+
+    localStorage.setItem(localStorageUserKey, stringifiedUser);
   }
 
   function signOut() {
@@ -21,7 +23,9 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const storagedUser = JSON.parse(localStorage.getItem(localStorageUserKey));
+    const jsonUser = localStorage.getItem(localStorageUserKey)
+
+    const storagedUser = JSON.parse(jsonUser); // parse json to javascript
 
     if (storagedUser) {
       setUser(storagedUser);

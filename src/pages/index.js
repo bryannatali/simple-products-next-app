@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import router from 'next/router';
 
 import { useAuth } from '../contexts/AuthContext'
-import { fakeApi } from '../services/fakeApi';
+import { fakeApi, createFakeApiClient } from '../services/fakeApi';
 
 import { Button } from '../components/Button'
 
@@ -64,8 +64,10 @@ export default function Home({ products }) {
   )
 }
 
-export const getServerSideProps = async () => {
-  const products = await fakeApi.getAllProducts();
+export const getServerSideProps = async (ctx) => {
+  const fakeApiClient = createFakeApiClient(ctx);
+
+  const products = await fakeApiClient.getAllProducts();
 
   return {
     props: { products }

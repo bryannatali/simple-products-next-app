@@ -15,8 +15,8 @@ export default function Login() {
 
   useEffect(
     () => {
-      if(auth.user) {
-        router.push('./')
+      if (auth.user) {
+        router.push('/')
       }
     },
     [auth.user]
@@ -31,7 +31,11 @@ export default function Login() {
 
     auth.signIn(user)
 
-    Router.push('/')
+    // router.push('/')
+  }
+
+  if (auth.user) {
+    return null;
   }
 
   return (
