@@ -39,13 +39,13 @@ class FakeApi {
 
   async getAllProducts() {
     await fakeAwait();
-
+    console.log(this.storagedProducts)
     return this.storagedProducts;
   }
 
   async getProductById(id) {
     await fakeAwait()
-
+    console.log(this.storagedProducts)
     const foundProduct = this.storagedProducts.find(product => product.id === id)
     return foundProduct
   }
@@ -62,6 +62,19 @@ class FakeApi {
       newStoragedProducts[productIndex] = product
 
       this.storagedProducts = newStoragedProducts;
+    }
+  }
+
+  async deleteProduct(product) {
+    await fakeAwait()
+
+    const productIndex = this.storagedProducts.findIndex(productToFind => product.id === productToFind.id)
+    if (productIndex > -1) {
+      const deletedProduct = [...this.storagedProducts]
+
+      deletedProduct.splice(productIndex, 1)
+
+      this.storagedProducts = deletedProduct;
     }
   }
 }

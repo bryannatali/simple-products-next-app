@@ -1,5 +1,7 @@
 import styled from "styled-components"
 
+import { shade } from "polished"
+
 export const ProductDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,5 +33,8 @@ export const ProductBox = styled.div`
   .name-input{
     width: 100%;
     margin: 0;
+  }
+  .delete-button{
+    background: linear-gradient(#b80c00, ${shade(0.2, '#b80c00')});
   }
 `
