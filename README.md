@@ -20,14 +20,14 @@
 ### Task 6 (OK)
 `Se tiver usuário logado redirecionar para home se tentar entrar na pagina de login`
 
-### Task 7
+### Task 7 (OK)
 `Editar descrição e preço do produto`
 
-### Task 8 (Desafio)
+### Task 8 (Desafio) (OK)
 `Remover o Produto`
 
 ### Next Steps
 `Salvar Produtos nos Cookies (OK)`
-`Editar Produto`
-`Remover Produto`
-`Criar Produto`
+`Editar Produto (OK)`
+`Remover Produto (OK)`
+`Criar Produto (OK)`

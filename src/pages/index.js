@@ -59,6 +59,7 @@ export default function Home({ products }) {
         <Button type="button" onClick={increment}>
           Click Me!
         </Button>
+        <Button className="register-button" type="button" onClick={() => router.push('/register-product')} >Criar Produto</Button>
       </HomeContainer>
     </BodyContainer>
   )

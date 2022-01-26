@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { shade } from 'polished';
+
 export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,6 +11,12 @@ export const HomeContainer = styled.div`
   height: 75vh;
 
   padding: 2rem;
+  .register-button{
+    font-size: 20px;
+    margin: 2rem;
+    padding: 1rem;
+    background: linear-gradient(#008024, ${shade(0.2, '#008024')});
+  }
 `
 export const BodyContainer = styled.div`
 

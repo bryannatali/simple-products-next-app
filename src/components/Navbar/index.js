@@ -17,9 +17,11 @@ export function Navbar({ className, pageTitle }) {
 
   return (
     <StyledNavbar className={className}>
-      <h2 style={{ color: 'white' }}>{pageTitle}</h2>
-
+      <div className="home-logo" onClick={() => Router.push("/")}>
+        <h2 style={{ color: 'white' }}>{pageTitle}</h2>
+      </div>
       <Button
+        className="sign-out-button"
         type="button"
         style={{ width: '100px' }}
         onClick={handleSignOut}

@@ -32,8 +32,8 @@ export default function ProductDetails({ product }) {
     setEditPrice(false)
   }
 
-  async function handleDeleteProduct(){
-    await fakeApi.deleteProduct
+  async function handleDeleteProduct() {
+    await fakeApi.deleteProduct(productState)
     router.push("/")
   }
 
