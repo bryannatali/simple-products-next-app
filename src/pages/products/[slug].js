@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import router from "next/router";
 
+import { api } from "../../services/api"
 import { fakeApi, createFakeApiClient } from "../../services/fakeApi"
 import { useAuth } from "../../contexts/AuthContext"
 
@@ -112,9 +113,10 @@ export default function ProductDetails({ product }) {
 
 export const getServerSideProps = async (ctx) => {
   const { slug } = ctx.params
-  const fakeApiClient = createFakeApiClient(ctx)
 
-  const product = await fakeApiClient.getProductById(Number(slug))
+  const response = await api.get(`/products/${slug}`)
+  const product = response.data
+
   return {
     props: { product }
   }

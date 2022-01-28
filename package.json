@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "next": "^12.0.8",
     "nookies": "^2.5.2",
     "polished": "^4.1.3",

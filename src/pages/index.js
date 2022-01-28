@@ -7,6 +7,7 @@ import { fakeApi, createFakeApiClient } from '../services/fakeApi';
 import { Button } from '../components/Button'
 
 import { BodyContainer, HomeContainer, ProductsList } from './index.styles';
+import { api } from '../services/api';
 
 export default function Home({ products }) {
   const [count, setCount] = useState(0);
@@ -66,9 +67,9 @@ export default function Home({ products }) {
 }
 
 export const getServerSideProps = async (ctx) => {
-  const fakeApiClient = createFakeApiClient(ctx);
+  const response = await api.get('/products')
 
-  const products = await fakeApiClient.getAllProducts();
+  const products = response.data
 
   return {
     props: { products }
